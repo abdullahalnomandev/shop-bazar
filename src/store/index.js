@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 const state = {
 
-  user: {email:null},
+  user: {email:null,name:null},
   
   products :[
     {
