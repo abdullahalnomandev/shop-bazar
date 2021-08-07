@@ -1,6 +1,7 @@
 <template>
   <div>
     <router-view>
+      <h1>I am abdullah AL noman</h1>
       <Home />
     </router-view>
   </div>
@@ -10,7 +11,7 @@
 import Home from "./components/Home/Home/Home.vue";
 export default {
   components: { Home },
-  name: "App",
+  name: "App", 
 };
 </script>
 
