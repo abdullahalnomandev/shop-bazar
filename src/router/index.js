@@ -20,10 +20,16 @@ const routes = [
       meta: { requireAuth: true },
   },
   {
-    path: "/admin",
-    name: "Admin",
-    component: () => import("../components/Admin/Admin/Admin.vue"),
-    meta: { requireAuth: true },
+    path: "/admin/addProducts",
+    name: "AddProducts",
+    component: () => import("../components/Admin/AddProducts/AddProducts.vue"),
+    // meta: { requireAuth: true },
+  },
+  {
+    path: "/admin/manageProduct",
+    name: "ManageProducts",
+    component: () => import("../components/Admin/ManageProducts/ManageProducts.vue"),
+    // meta: { requireAuth: true },
   },
   {
     path: "/login",

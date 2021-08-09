@@ -1,7 +1,6 @@
 <template>
   <div>
     <router-view>
-      <h1>I am abdullah AL noman</h1>
       <Home />
     </router-view>
   </div>

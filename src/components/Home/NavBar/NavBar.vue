@@ -9,7 +9,7 @@
           <p class="mt-2 text-info">{{this.$store.state.user.email}}</p>
           <b-nav-item  router-link to="/">Home</b-nav-item>
           <b-nav-item router-link to="/order">Order</b-nav-item>
-          <b-nav-item router-link to="/admin">Admin</b-nav-item>
+          <b-nav-item router-link to="/admin/addProducts">Admin</b-nav-item>
           <b-nav-item  router-link to="/deal">Deal</b-nav-item>
 
           <router-link v-if="!this.$store.state.user.email" to="/login">

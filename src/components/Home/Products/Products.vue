@@ -1,27 +1,30 @@
 <template>
   <div class="container">
+    <div class="text-center mt-5">
+      <h3 v-if="allProducts.length === 0"> <img src="https://thumbs.gfycat.com/UncommonCrazyAfricanaugurbuzzard-max-1mb.gif" alt=""></h3>
+    </div>
     <div class="row my-5">
       <div
-        v-for="product in products"
-        :key="product.id"
+        v-for="product in allProducts"
+        :key="product._id"
         class="col-md-4 col-sm-6 col-sm-auto"
       >
-        <div class="card-product ">
+        <div class="card-product">
           <b-card
-            :title="product.name + ' - ' + product.weight"
-            :img-src="product.image"
+            :title="product.product + ' - ' + product.wight"
+            :img-src="product.img"
             img-alt="Image"
             img-top
             tag="article"
-            style="max-width: 20rem;"
-            class="mb-2  "
+            style="max-width: 20rem"
+            class="mb-2"
           >
             <b-card-text>
-              <h5 class="text-secondary">$ {{ product.Price }}</h5>
+              <h5 class="text-secondary">$ {{ product.price }}</h5>
             </b-card-text>
             <div class="text-center">
               <router-link
-                :to="{ name: 'ProductsDetails', params: { _id: product.id } }"
+                :to="{ name: 'ProductsDetails', params: { _id: product._id } }"
               >
                 <button class="btn-dark rounded px-3 py-2">Buy Now</button>
               </router-link>
@@ -34,17 +37,21 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
+
 export default {
   name: "Products",
-  data() {
-    return {
-      products: this.$store.state.products,
-    };
-    
+  methods: {
+    ...mapActions(["fetchProducts"]),
   },
-  
+  computed: mapGetters(["allProducts"]),
+  created() {
+    this.fetchProducts();
+  },
 };
 </script>
+
+
 <style scoped>
 img.card-img-top {
   height: 226px;
