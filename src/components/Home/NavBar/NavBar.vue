@@ -1,16 +1,16 @@
 <template>
   <b-navbar  class="sticky-top"  toggleable="lg" type="dark" variant="success">
     <div class="container">
-      <b-navbar-brand router-link to="/"> <h5>SHOP</h5></b-navbar-brand>
+      <b-navbar-brand router-link to="/" class="foo" exact> <h5>SHOP</h5></b-navbar-brand>
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="ms-auto nav-item" >
           <p class="mt-2 text-info">{{this.$store.state.user.email}}</p>
-          <b-nav-item  router-link to="/">Home</b-nav-item>
-          <b-nav-item router-link to="/order">Order</b-nav-item>
-          <b-nav-item router-link to="/admin/addProducts">Admin</b-nav-item>
-          <b-nav-item  router-link to="/deal">Deal</b-nav-item>
+          <b-nav-item  router-link to="/"  active-class="foo" exact>Home</b-nav-item>
+          <b-nav-item router-link to="/order" active-class="foo" exact>Order</b-nav-item>
+          <b-nav-item router-link to="/admin/addProducts" active-class="foo" exact>Admin</b-nav-item>
+          <b-nav-item  router-link to="/deal" active-class="foo" exact>Deal</b-nav-item>
 
           <router-link v-if="!this.$store.state.user.email" to="/login">
            <button  class="btn-info rounded px-3 py-2 ms-2">Login</button> 
@@ -49,20 +49,23 @@ export default {
   transition: .3s;
 
 }
-.nav-item a:focus::after{
-    display: block;
-    content: "";
-    width: 100%;
-    height: 1px;
-    background-color: #66ffdb;
-    transition: all .3s;
-}
-  
+/* .nav-item a:focus::after{ */
+    /* display: block; */
+    /* content: ""; */
+    /* width: 100%; */
+    /* height: 1px; */
+    /* background-color: #66ffdb; */
+    /* transition: all .3s; */
+/* } */
+/*    */
 .nav-item a:hover{
  background-color: #0a2b0a;
- border-radius: 5px;
+ border-radius: 5px; 
  transition: .3s;
 
+}
+.router-link-active{ 
+  color: #19da53 !important; 
 }
 
 
