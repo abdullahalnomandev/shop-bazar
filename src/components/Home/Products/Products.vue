@@ -49,6 +49,7 @@ export default {
   created() {
     this.fetchProducts();
   },
+  
 };
 </script>
 

@@ -10,6 +10,7 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
+    meta: { requireAuth: true },
   },
 
   {
@@ -23,18 +24,24 @@ const routes = [
     path: "/admin/addProducts",
     name: "AddProducts",
     component: () => import("../components/Admin/AddProducts/AddProducts.vue"),
-    // meta: { requireAuth: true },
+    meta: { requireAuth: true },
   },
   {
     path: "/admin/manageProduct",
     name: "ManageProducts",
     component: () => import("../components/Admin/ManageProducts/ManageProducts.vue"),
-    // meta: { requireAuth: true },
+  
   },
   {
     path: "/login",
     name: "Login",
     component: () => import("../components/Login/Login.vue"),
+  },
+  {
+    path: "/order",
+    name: "Order",
+    component: () => import("../components/Order/Order/Order.vue"),
+    meta: { requireAuth: true },
   },
   {
     path: "*",

@@ -65,6 +65,7 @@
 
 <script>
 import Sidebar from "../Sidebar/Sidebar.vue";
+import {mapActions} from "vuex";
 import axios from "axios";
 export default {
   components: { Sidebar },
@@ -74,46 +75,50 @@ export default {
       product: null,
       price: null,
       wight: null,
-      imageUrl: null,
+      // imageUrl: '',
+      image2:''
     };
   },
   methods: {
     onUpload(e) {
+      let vase = this
       const imageData = new FormData();
-
       imageData.set("key", "f2ba7412e0a54266270f7441b219296d");
       imageData.append("image", e.target.files[0]);
       axios
         .post("https://api.imgbb.com/1/upload", imageData)
         .then(function(response) {
-          this.imageUrl = response.data.data.image.url;
-          console.log(response.data.data.image.url);
+
+          if(response.status===200){
+            vase.image2 = response.data.data.image.url;
+          }
+          console.log(vase.image2)
+
         })
         .catch(function(error) {
-          console.log(error);
+          console.log("thisis error",error);
         });
     },
+    ...mapActions(["addProduct"]),
+
     onSubmit(e) {
       e.preventDefault();
       const product = {
         product: this.product,
         price: this.price,
         wight: this.wight,
-        image: this.imageUrl,
+        img: this.image2,
       };
 
       console.log("product", product); 
 
-      axios
-        .post("https://rocky-reaches-51379.herokuapp.com/addProducts", product)
-        .then((res) => {
-          if (res) {
-            alert("Product Added Succesfull");
-          }
-        })
+      this.addProduct(product)
 
-        .catch((err) => console.log(err));
+      this.product= null,
+      this.price = null,
+      this.wight = null
     },
+    
   },
 };
 </script>
