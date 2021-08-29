@@ -33,7 +33,7 @@
         />
         <br />
         <input
-          type="password"
+          :type="isShow? 'name':'password' " 
           class="form-control"
           name="password"
           id="password"
@@ -41,6 +41,10 @@
           v-model="password"
           required
         />
+        <div class="w-50 mt-3">
+          <input type="checkbox" name="checkBox" id=""  v-model="isShow"> 
+          {{isShow ?'Hide Password' : 'Show password'}}
+        </div>
         <br />
 
         <div v-if="!this.isLogin">
@@ -108,6 +112,7 @@ export default {
       password: null,
       error: null,
       success: false,
+      isShow: false
     };
   },
   methods: {
@@ -170,17 +175,20 @@ export default {
         .auth()
         .signInWithPopup(provider)
         .then((result) => {
-          // var credential = result.credential;
-          // var token = credential.accessToken;
-          // console.log(user,token)
+          var credential = result.credential;
+          var token = credential.accessToken;
+          console.log(user,token)
           var user = result.user;
           const loginUser = {
             name: user.displayName,
             email: user.email,
             photo: user.photoURL,
           };
-          console.log(loginUser);
-          this.$store.state.user = loginUser;
+
+            console.log(result)
+
+          // this.$store.state.user = loginUser;
+          localStorage.setItem('user',JSON.stringify(loginUser))
           this.$router.push("/");
         })
         .catch((error) => {
@@ -193,6 +201,8 @@ export default {
         });
     },
   },
+
+  
 };
 </script>
 

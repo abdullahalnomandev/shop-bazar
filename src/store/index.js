@@ -6,7 +6,8 @@ Vue.use(Vuex);
 
 //State
 const state = {
-  user: { email: null, name: null },
+  // user: { email: null, name: null },
+  user : JSON.parse(localStorage.getItem('user')),
   products: [],
   orders: [],
 };
